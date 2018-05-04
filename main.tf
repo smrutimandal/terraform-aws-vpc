@@ -6,7 +6,7 @@ resource "aws_vpc" "main_vpc" {
   cidr_block = "${var.vpc_cidr}"
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.main_vpc.id}"
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_subnet" "priv_subnet" {
   cidr_block = "${var.vpc_cidr}"
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
 
@@ -36,7 +36,7 @@ resource "aws_default_route_table" "rtable" {
   }
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_default_network_acl" "default" {
   }
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
 
@@ -92,6 +92,6 @@ resource "aws_default_security_group" "default" {
   }
 
   tags {
-    Name = "tf-staging"
+    Name = "${var.tag}"
   }
 }
